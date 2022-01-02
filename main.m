@@ -13,6 +13,7 @@ data = randi([0, 1], 1, len);
 
 [ndata,err] = bsc(data,er);
 a = 2;
+b = 6;
 
 
 
