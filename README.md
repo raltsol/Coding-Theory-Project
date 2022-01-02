@@ -1,2 +1,2 @@
 # Coding-Theory-Project
-Solving simple telecommunication channel errors
+This is a group project on coding theory essentials. Solving simple channel errors, while trying to achieve the theoretical capacity.
