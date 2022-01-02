@@ -12,6 +12,7 @@ len = 10;
 data = randi([0, 1], 1, len);
 
 [ndata,err] = bsc(data,er);
+a = 2;
 
 
 
