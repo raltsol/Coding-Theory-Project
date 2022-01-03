@@ -41,7 +41,7 @@ end
 
 % Initialize error prob & data
 
-er = 0.2;
+er = 0.1;
 
 len = 7;
 % in_data = randi([0, 1], 1, len); % codeword of length = 7
@@ -68,7 +68,7 @@ check_node = zeros(1,3);
 var_node = out_data;
 % disp(var_node);
 temp = mod(H*var_node',2);
-disp("temp is: ", num2str(temp));
+disp(strcat("temp initial is: ", num2str(temp')));
 
 if temp == 0
     
@@ -77,27 +77,40 @@ if temp == 0
     
 else
     
-    % Step_2: Determine Check Node
-    check_node(1) = deter_check(var_node(2),var_node(3),var_node(4)+var_node(5));
-    check_node(2) = deter_check(var_node(1),var_node(3),var_node(4)+var_node(6));
-    check_node(3) = deter_check(var_node(1),var_node(2),var_node(4)+var_node(7));
-
-    % Step_3: Check to Var
-
-    var_node(1) = check_node(2)*check_node(3);
-    var_node(2) = check_node(1)*check_node(3);
-    var_node(3) = check_node(1)*check_node(2);
-    var_node(4) = check_node(1)*check_node(2)*check_node(3);
-    var_node(5) = check_node(1);
-    var_node(6) = check_node(2);
-    var_node(7) = check_node(3);
-
-    % Step_4: Checking if it's a codeword
-    temp = mod(H*var_node',2);
-    disp("temp is: "+num2str(temp));
+    N = 0;
+    SUM = 1000;
     
+    while N < 20 && SUM ~= 0 
+        
+        N = N + 1
+        % Step_2: Determine Check Node
+        check_node(1) = deter_check(var_node(2),var_node(3),var_node(4)+var_node(5));
+        check_node(2) = deter_check(var_node(1),var_node(3),var_node(4)+var_node(6));
+        check_node(3) = deter_check(var_node(1),var_node(2),var_node(4)+var_node(7));
+
+        % Step_3: Check to Var
+
+        var_node(1) = check_node(2)*check_node(3);
+        var_node(2) = check_node(1)*check_node(3);
+        var_node(3) = check_node(1)*check_node(2);
+        var_node(4) = check_node(1)*check_node(2)*check_node(3);
+        var_node(5) = check_node(1);
+        var_node(6) = check_node(2);
+        var_node(7) = check_node(3);
+
+        % Step_4: Checking if it's a codeword
+        temp = mod(H*var_node',2);
+        disp(strcat("temp is: ", num2str(temp')));
+        SUM = sum(temp);
+        
+    end
 end
 
+fprintf('\nFinished decoding\n');
+disp(strcat("Codeword is ", num2str(in_data)));
+disp(strcat("Fixed codeword is ", num2str(var_node)));
+disp(sum(abs(in_data - var_node)))
+disp(sum(abs(in_data - out_data)))
 
 
 
