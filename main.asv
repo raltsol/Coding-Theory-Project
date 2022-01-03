@@ -22,6 +22,12 @@ clc;
 
 
 H = [1 1 0 1 0 0 0; 0 0 1 1 0 1 0; 0 0 0 1 1 0 1];
+Hn = [0 1 0 1 1 0 0; 0 0 1 1 0 1 0; 1 0 0 1 0 0 1];
+P = Hn(:,1:4);
+Gn = [eye(4) P'];
+G = (Gn(:,5) Gn(:,2:4) Gn(:,1);
+G(:,1) = Gn(:,5);
+G(:,5) = Gn(:,1);
 
 var_node = zeros(1,7);
 chan_node = zeros(2,7);
@@ -44,6 +50,28 @@ check_node(3) = deter_check(var_node(4),var_node(5),var_node(7));
 var_node(1) = check_node(1);
 var_node(2) = check_node(1);
 var_node(3) = check_node(2);
-var_node(4) = check_node(1)*check_node(2)*check_node(3)??
+var_node(4) = check_node(1)*check_node(2)*check_node(3);
+var_node(5) = check_node(3);
+var_node(6) = check_node(2);
+var_node(7) = check_node(3);
+
+% Step_4: Checking if it's a codeword
+
+temp = H*var_node';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
