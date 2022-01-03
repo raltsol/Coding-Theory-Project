@@ -41,13 +41,31 @@ check_node(3) = deter_check(var_node(4),var_node(5),var_node(7));
 
 % Step_3: Check to Var
 
+var_node(1) = check_node(1);
+var_node(2) = check_node(1);
+var_node(3) = check_node(2);
+var_node(4) = check_node(1)*check_node(2)*check_node(3);
+var_node(5) = check_node(3);
+var_node(6) = check_node(2);
+var_node(7) = check_node(3);
 
-<<<<<<< HEAD
-=======
-[ndata,err] = bsc(data,er);
-a = 2;
-b = 6;
->>>>>>> b9ffd38a894062ce7e5844010100ca5e820d67a4
+% Step_4: Checking if it's a codeword
+
+temp = H*var_node';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

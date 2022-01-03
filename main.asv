@@ -30,16 +30,20 @@ check_node = zeros(1,3);
 chan_node = [0.01, 0.01, 0.01, 0.01, 0.99, 0.99, 0.99;...
         0.99, 0.99, 0.99, 0.99, 0.01, 0.01, 0.01];
 
-% Initialize (Chan to Var)
+% Step_1: Initialize Variable Nodes (Chan to Var)
 var_node = init_var(chan_node, var_node);
 disp(var_node);
 
+% Step_2: Determine Check Node
+check_node(1) = deter_check(var_node(1),var_node(2),var_node(4));
+check_node(2) = deter_check(var_node(3),var_node(4),var_node(6));
+check_node(3) = deter_check(var_node(4),var_node(5),var_node(7));
 
-check_node(1) deter_check(var_node(1),var_node(2),var_node(4));
-deter_check(var_node(3),var_node(4),var_node(6));
-deter_check(var_node(4),var_node(5),var_node(7));
+% Step_3: Check to Var
 
-
-
+var_node(1) = check_node(1);
+var_node(2) = check_node(1);
+var_node(3) = check_node(2);
+var_node(4) = check_node(1)*check_node(2)*check_node(3)??
 
 
