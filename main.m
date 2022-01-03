@@ -42,6 +42,12 @@ check_node(3) = deter_check(var_node(4),var_node(5),var_node(7));
 % Step_3: Check to Var
 
 
+<<<<<<< HEAD
+=======
+[ndata,err] = bsc(data,er);
+a = 2;
+b = 6;
+>>>>>>> b9ffd38a894062ce7e5844010100ca5e820d67a4
 
 
 
