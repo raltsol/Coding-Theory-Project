@@ -31,10 +31,10 @@ u_list = [0 0 0 0;
      1 1 1 0;
      1 1 1 1];
 
-x = ones(16,7);
+codewords = ones(16,7);
 
 for i = 1:16
-    x(i,:) = mod(u_list(i,:)*G,2);
+    codewords(i,:) = mod(u_list(i,:)*G,2);
 end
 
 %% Simulating the Binary Symmetric Channel
@@ -45,30 +45,52 @@ er = 0.1;
 
 len = 7;
 % in_data = randi([0, 1], 1, len); % codeword of length = 7
-in_data = x(2,:);
-disp("initial data is: "+num2str(in_data));
-
+in_data = codewords(2,:);
+x = zeros(1,7);
+for i = 1:length(in_data)
+    if in_data(i) == 0
+        x(i) = 1;
+    else
+        x(i) = -1;
+    end
+end
+disp("x = " + num2str(x))
+%disp("initial data is: "+num2str(in_data));
 [out_data,err] = bsc(in_data,er);
-
-disp("output data is: "+num2str(out_data));
+%disp("output data is: "+num2str(out_data));
 disp("errors: "+num2str(err));
+
+y = zeros(1,7);
+for i = 1:length(out_data)
+    if out_data(i) == 0
+        y(i) = 1;
+    else
+        y(i) = -1;
+    end
+end
+disp("y = " + num2str(y))
 
 %% Graph
 
 var_node = zeros(1,7);
-chan_node = zeros(2,7);
-check_node = zeros(1,3);
+chan_node = lk(x, y, er);
+% check_node = zeros(1,3);
 
-% chan_node = [0.01, 0.01, 0.01, 0.01, 0.99, 0.99, 0.99;...
-%         0.99, 0.99, 0.99, 0.99, 0.01, 0.01, 0.01];
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 % Step_1: Initialize Variable Nodes (Chan to Var)
-% var_node = init_var(chan_node, var_node);
+var_node = chan_node;
+% temp = mod(H*var_node',2);
+% disp(strcat("temp initial is: ", num2str(temp')));
 
-var_node = out_data;
-% disp(var_node);
-temp = mod(H*var_node',2);
-disp(strcat("temp initial is: ", num2str(temp')));
+
+
+
+
+
+
+
+
 
 if temp == 0
     
@@ -111,23 +133,3 @@ disp(strcat("Codeword is ", num2str(in_data)));
 disp(strcat("Fixed codeword is ", num2str(var_node)));
 disp(sum(abs(in_data - var_node)))
 disp(sum(abs(in_data - out_data)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
