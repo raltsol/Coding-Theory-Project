@@ -74,6 +74,7 @@ disp("y = " + num2str(y))
 
 var_node = zeros(1,7);
 chan_node = lk(x, y, er);
+<<<<<<< HEAD
  
 
 
@@ -86,6 +87,24 @@ check_node_2_sent = check_node_2;
 check_node_3_sent = check_node_3;
 
 % check1_to_var
+=======
+% check_node = zeros(1,3);
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+% Step_1: Initialize Variable Nodes (Chan to Var)
+var_node = chan_node;
+% temp = mod(H*var_node',2);
+% disp(strcat("temp initial is: ", num2str(temp')));
+
+
+
+
+
+
+
+
+>>>>>>> 9c504b097df2f41c25e559a8b0a017b5d12767c5
 
 
 for i = 1:size(check_node_1,2)
@@ -100,6 +119,7 @@ for i = 1:size(check_node_1,2)
     
 end
 
+<<<<<<< HEAD
 
 
 
@@ -156,3 +176,10 @@ var_node = chan_node;
 % disp(strcat("Fixed codeword is ", num2str(var_node)));
 % disp(sum(abs(in_data - var_node)))
 % disp(sum(abs(in_data - out_data)))
+=======
+fprintf('\nFinished decoding\n');
+disp(strcat("Codeword is ", num2str(in_data)));
+disp(strcat("Fixed codeword is ", num2str(var_node)));
+disp(sum(abs(in_data - var_node)))
+disp(sum(abs(in_data - out_data)))
+>>>>>>> 9c504b097df2f41c25e559a8b0a017b5d12767c5
