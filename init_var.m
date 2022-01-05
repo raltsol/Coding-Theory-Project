@@ -14,4 +14,3 @@ function y = init_var(chan_node, var_node)
 
     y = var_node;
     
-end

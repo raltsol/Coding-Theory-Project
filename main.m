@@ -7,11 +7,16 @@ clc;
 %% Application (Maybe Hamming code!!!)
 
 
-H = [1 1 0 1 0 0 0; 0 0 1 1 0 1 0; 0 0 0 1 1 0 1];
-Hn = [0 1 0 1 1 0 0; 0 0 1 1 0 1 0; 1 0 0 1 0 0 1];
-P = Hn(:,1:4);
-Gn = [eye(4) P'];
-G = [Gn(:,5) Gn(:,2:4) Gn(:,1) Gn(:,6:7)];
+% H = [1 1 0 1 0 0 0; 0 0 1 1 0 1 0; 0 0 0 1 1 0 1];
+% Hn = [0 1 0 1 1 0 0; 0 0 1 1 0 1 0; 1 0 0 1 0 0 1];
+% P = Hn(:,1:4);
+% Gn = [eye(4) P'];
+% G = [Gn(:,5) Gn(:,2:4) Gn(:,1) Gn(:,6:7)];
+
+n = 3;
+H = ham_par(n)
+P = H(:, 1:(2^n-1-n));
+G = [eye(2^n-1-n) P']
 
 
 u_list = [0 0 0 0;
@@ -111,36 +116,3 @@ disp(strcat("Codeword is ", num2str(in_data)));
 disp(strcat("Fixed codeword is ", num2str(var_node)));
 disp(sum(abs(in_data - var_node)))
 disp(sum(abs(in_data - out_data)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
