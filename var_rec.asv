@@ -1,7 +1,7 @@
 function var_receive = var_rec(check_node_sent, pos)
     
     n = length(check_node_sent); 
-    var_receive = pos;
+    var_receive = zeros(1, 2^n - 1);
   % var_receive = ones(1, 2^n - 1);
     
     
@@ -16,5 +16,9 @@ function var_receive = var_rec(check_node_sent, pos)
                                          my_cell(1, j);
             
         end
-    end 
+    end
+    
+    disp("vghka")
+    
+    
 end

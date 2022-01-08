@@ -1,5 +1,6 @@
 function check_node_receive = var2check(H, n, pos, flag)
     
+    rows_H = size(H,1);
     cols_H = size(H,2);
     check_node_receive = zeros(2, cols_H);
     
