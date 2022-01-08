@@ -1,0 +1,33 @@
+function check_node_receive = var2check_updated(var_nodes_receive, pos, n)
+    
+    check_node_receive = cell(1,n);
+    
+    for cell_counter = 1:2^n-1
+        
+        c = var_nodes_receive{cell_counter};
+        cols_c = size(c,2);
+        
+        for i = 1:cols_c 
+
+            
+            columns = [1:i-1 i+1:cols_c];
+            num = c(1,columns);
+            
+            if var_nodes_receive{cell_counter}(2,i) == n
+                l = pos(cell_counter) + sum(num);
+                
+                check_node_receive{n}(1, i) = l;
+                check_node_receive{n}(2, i) ...
+                   = var_nodes_receive{cell_counter}(2, i);
+            end
+            
+           
+%             l = sum(num) + pos(var_nodes_receive{cell_counter}(2, i));
+            check_node_receive{cell_counter}(1, i) = l;
+            check_node_receive{cell_counter}(2, i) ...
+                = var_nodes_receive{cell_counter}(2, i);
+            
+        end
+    end
+
+end
